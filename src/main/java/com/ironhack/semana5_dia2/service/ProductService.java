@@ -1,11 +1,11 @@
-package com.ironhack.semana5_dia1.service;
+package com.ironhack.semana5_dia2.service;
 
-import com.ironhack.semana5_dia1.dto.ProductRequestDTO;
-import com.ironhack.semana5_dia1.dto.ProductResponseDTO;
-import com.ironhack.semana5_dia1.dto.ProductUpdatePriceRequestDTO;
-import com.ironhack.semana5_dia1.dto.ProductUpdateRequestDTO;
-import com.ironhack.semana5_dia1.exception.ProductNotFoundException;
-import com.ironhack.semana5_dia1.model.Product;
+import com.ironhack.semana5_dia2.dto.ProductRequestDTO;
+import com.ironhack.semana5_dia2.dto.ProductResponseDTO;
+import com.ironhack.semana5_dia2.dto.ProductUpdatePriceRequestDTO;
+import com.ironhack.semana5_dia2.dto.ProductUpdateRequestDTO;
+import com.ironhack.semana5_dia2.exception.ProductNotFoundException;
+import com.ironhack.semana5_dia2.model.Product;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

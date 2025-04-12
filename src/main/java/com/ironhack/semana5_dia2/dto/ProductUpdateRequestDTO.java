@@ -1,11 +1,16 @@
-package com.ironhack.semana5_dia1.dto;
+package com.ironhack.semana5_dia2.dto;
 
-public class ProductDTO {
+import jakarta.validation.constraints.Min;
+
+// Actualizaciones PARCIALES
+public class ProductUpdateRequestDTO {
     private String name;
     private String category;
-    private int price;
 
-    public ProductDTO() {
+    @Min(value = 1, message = "Price must be greater than zero")
+    private Integer price; // <--- como Integer no int para que pueda ser null
+
+    public ProductUpdateRequestDTO() {
     }
 
     public String getName() {
@@ -24,11 +29,11 @@ public class ProductDTO {
         this.category = category;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 }

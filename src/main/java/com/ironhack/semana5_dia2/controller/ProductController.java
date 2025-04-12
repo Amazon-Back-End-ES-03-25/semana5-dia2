@@ -1,12 +1,12 @@
-package com.ironhack.semana5_dia1.controller;
+package com.ironhack.semana5_dia2.controller;
 
 
-import com.ironhack.semana5_dia1.dto.ProductRequestDTO;
-import com.ironhack.semana5_dia1.dto.ProductResponseDTO;
-import com.ironhack.semana5_dia1.dto.ProductUpdatePriceRequestDTO;
-import com.ironhack.semana5_dia1.dto.ProductUpdateRequestDTO;
-import com.ironhack.semana5_dia1.model.Product;
-import com.ironhack.semana5_dia1.service.ProductService;
+import com.ironhack.semana5_dia2.dto.ProductRequestDTO;
+import com.ironhack.semana5_dia2.dto.ProductResponseDTO;
+import com.ironhack.semana5_dia2.dto.ProductUpdatePriceRequestDTO;
+import com.ironhack.semana5_dia2.dto.ProductUpdateRequestDTO;
+import com.ironhack.semana5_dia2.model.Product;
+import com.ironhack.semana5_dia2.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

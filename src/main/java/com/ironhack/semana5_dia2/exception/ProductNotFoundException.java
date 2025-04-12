@@ -1,4 +1,4 @@
-package com.ironhack.semana5_dia1.exception;
+package com.ironhack.semana5_dia2.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

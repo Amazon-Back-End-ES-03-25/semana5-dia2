@@ -1,4 +1,4 @@
-package com.ironhack.semana5_dia1.model;
+package com.ironhack.semana5_dia2.model;
 
 public enum Category {
     DYSTOPIA,

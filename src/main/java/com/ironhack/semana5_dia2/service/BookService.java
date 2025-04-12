@@ -1,9 +1,9 @@
-package com.ironhack.semana5_dia1.service;
+package com.ironhack.semana5_dia2.service;
 
 
-import com.ironhack.semana5_dia1.dto.BookRequestDTO;
-import com.ironhack.semana5_dia1.model.Book;
-import com.ironhack.semana5_dia1.model.Category;
+import com.ironhack.semana5_dia2.dto.BookRequestDTO;
+import com.ironhack.semana5_dia2.model.Book;
+import com.ironhack.semana5_dia2.model.Category;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

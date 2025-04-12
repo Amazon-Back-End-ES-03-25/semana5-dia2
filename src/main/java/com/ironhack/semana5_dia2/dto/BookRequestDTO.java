@@ -1,6 +1,6 @@
-package com.ironhack.semana5_dia1.dto;
+package com.ironhack.semana5_dia2.dto;
 
-import com.ironhack.semana5_dia1.model.Category;
+import com.ironhack.semana5_dia2.model.Category;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

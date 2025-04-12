@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ironhack</groupId>
-	<artifactId>semana5-dia1</artifactId>
+	<artifactId>semana5-dia2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>semana5-dia1</name>
+	<name>semana5-dia2</name>
 	<description>REST API to test CRUDs</description>
 
 	<properties>

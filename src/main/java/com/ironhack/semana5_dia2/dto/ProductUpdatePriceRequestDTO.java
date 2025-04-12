@@ -1,4 +1,4 @@
-package com.ironhack.semana5_dia1.dto;
+package com.ironhack.semana5_dia2.dto;
 
 import jakarta.validation.constraints.Min;
 

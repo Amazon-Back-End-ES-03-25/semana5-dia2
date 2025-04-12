@@ -1,10 +1,10 @@
-package com.ironhack.semana5_dia1.controller;
+package com.ironhack.semana5_dia2.controller;
 
-import com.ironhack.semana5_dia1.dto.BookRequestDTO;
-import com.ironhack.semana5_dia1.dto.BookResponseDTO;
-import com.ironhack.semana5_dia1.model.Book;
-import com.ironhack.semana5_dia1.model.Category;
-import com.ironhack.semana5_dia1.service.BookService;
+import com.ironhack.semana5_dia2.dto.BookRequestDTO;
+import com.ironhack.semana5_dia2.dto.BookResponseDTO;
+import com.ironhack.semana5_dia2.model.Book;
+import com.ironhack.semana5_dia2.model.Category;
+import com.ironhack.semana5_dia2.service.BookService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
