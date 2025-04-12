@@ -1,0 +1,175 @@
+{
+	"info": {
+		"_postman_id": "5e5a08a7-00ed-41d7-a7b5-a05243a07153",
+		"name": "Products Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "21489776",
+		"_collection_link": "https://amazon-es0325.postman.co/workspace/Amazon-ES_03_25~16460180-8383-441d-af12-771a91cd649a/collection/21489776-5e5a08a7-00ed-41d7-a7b5-a05243a07153?action=share&source=collection_link&creator=21489776"
+	},
+	"item": [
+		{
+			"name": "All Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/products"
+			},
+			"response": []
+		},
+		{
+			"name": "Product By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/products/6"
+			},
+			"response": []
+		},
+		{
+			"name": "Products By Params",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/search?productCategory=electronics,stationary&minPrice=5&maxPrice=60",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"search"
+					],
+					"query": [
+						{
+							"key": "productCategory",
+							"value": "electronics,stationary"
+						},
+						{
+							"key": "minPrice",
+							"value": "5"
+						},
+						{
+							"key": "maxPrice",
+							"value": "60"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Products By Category",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/search/category?productCategory=accessories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"search",
+						"category"
+					],
+					"query": [
+						{
+							"key": "productCategory",
+							"value": "accessories"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Products By Price Range",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/search/price-range?minPrice=2&maxPrice=20",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"search",
+						"price-range"
+					],
+					"query": [
+						{
+							"key": "minPrice",
+							"value": "2"
+						},
+						{
+							"key": "maxPrice",
+							"value": "20"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1000000, // lo sobreescribe en el constructor\n    \"name\": \"Bottle\",\n    \"category\": \"kitchenware\",\n    \"price\": 30,\n    \"businessReference\": 4567\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/products"
+			},
+			"response": []
+		},
+		{
+			"name": "Product by ProductRequestDTO",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Bottle\", // no nulo ni vacío\n    \"category\": \"Kitchenware\", // no nulo\n    \"price\": 15 // no menor que 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/products/product-request-dto"
+			},
+			"response": []
+		},
+		{
+			"name": "Product by ProductDTO",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Bottle\",\n    \"category\": \"Kitchenware\",\n    \"price\": 15\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/products/product-dto"
+			},
+			"response": []
+		}
+	]
+}

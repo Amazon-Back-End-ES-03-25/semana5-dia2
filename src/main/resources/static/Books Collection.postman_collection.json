@@ -1,0 +1,127 @@
+{
+	"info": {
+		"_postman_id": "9383e580-e8be-4c4a-8599-8d9c3954fb63",
+		"name": "Books Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "21489776",
+		"_collection_link": "https://amazon-es0325.postman.co/workspace/Amazon-ES_03_25~16460180-8383-441d-af12-771a91cd649a/collection/21489776-9383e580-e8be-4c4a-8599-8d9c3954fb63?action=share&source=collection_link&creator=21489776"
+	},
+	"item": [
+		{
+			"name": "All Books",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/books"
+			},
+			"response": []
+		},
+		{
+			"name": "Book By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/books/5"
+			},
+			"response": []
+		},
+		{
+			"name": "Books By Author",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/books/search?author=J.R.R.%20Tolkien",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"books",
+						"search"
+					],
+					"query": [
+						{
+							"key": "author",
+							"value": "J.R.R.%20Tolkien"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Books By Params",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/books/filter?categories=FANTASY,DYSTOPIA&minPages=300&maxPages=400",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"books",
+						"filter"
+					],
+					"query": [
+						{
+							"key": "categories",
+							"value": "FANTASY,DYSTOPIA"
+						},
+						{
+							"key": "minPages",
+							"value": "300"
+						},
+						{
+							"key": "maxPages",
+							"value": "400"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"title\": \"The Hobbit\",\n    \"author\": \"J.R.R. Tolkien\",\n    \"category\": \"FANTASY\",\n    \"pages\": 310\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/books"
+			},
+			"response": []
+		},
+		{
+			"name": "Book From DTO",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"The Hobbit\",\n    \"author\": \"J.R.R. Tolkien\",\n    \"category\": \"FANTASY\",\n    \"pages\": 310\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/books/book-dto"
+			},
+			"response": []
+		}
+	]
+}
