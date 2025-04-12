@@ -1,8 +1,10 @@
 package com.ironhack.semana5_dia1.service;
 
-import com.ironhack.semana5_dia1.dto.ProductDTO;
 import com.ironhack.semana5_dia1.dto.ProductRequestDTO;
 import com.ironhack.semana5_dia1.dto.ProductResponseDTO;
+import com.ironhack.semana5_dia1.dto.ProductUpdatePriceRequestDTO;
+import com.ironhack.semana5_dia1.dto.ProductUpdateRequestDTO;
+import com.ironhack.semana5_dia1.exception.ProductNotFoundException;
 import com.ironhack.semana5_dia1.model.Product;
 import org.springframework.stereotype.Service;
 
@@ -32,17 +34,17 @@ public class ProductService {
                 return product;
             }
         }
-        // throw new NoSuchElementException("Product not found with id: " + id); --> tiro una excepción si no encuentro nada
-        return null;
+        throw new ProductNotFoundException(id);
+        //return null;
     }
 
     public List<Product> getProductsByParams(List<String> categories, int minPrice, int maxPrice) {
         List<Product> result = new ArrayList<>();
 
         for (Product product : productArrayList) {
-            // Checkear si es la misma categoria
+
             boolean equalsCategory = categories == null || categories.isEmpty() || categories.contains(product.getCategory());
-            // Checkear si el precio está en el rango
+
             boolean isInMinPriceRange = product.getPrice() >= minPrice;
             boolean isInMaxPriceRange = product.getPrice() <= maxPrice;
             boolean matchesPriceRange = isInMinPriceRange && isInMaxPriceRange;
@@ -85,56 +87,86 @@ public class ProductService {
         return result;
     }
 
-    // método para crear productos que devuelve el nuevo producto creado
-    public Product createProductWithoutDTO(Product product) {
-        // como el usuario no sabe el size de mi arrayList le seteo el id yo
-        product.setId(productArrayList.size());
-        productArrayList.add(product);
-        return product;
-    }
 
-    // método para crear productos que devuelve el nuevo producto creado
-    public Product createProduct(Product product) {
-        // como el usuario no sabe el size de mi arrayList le seteo el id yo
-        product.setId(productArrayList.size());
-        productArrayList.add(product);
-        return product;
-    }
-
-    // recibe DTO y devuelve Product (no lo llamamos en el controller, por no poner muchos)
-    public Product createProductFromDTO(ProductRequestDTO productRequestDTO) {
-        // traducción de DTO (cajita controlada contenedora de datos) a mi modelo Product
-        Product newProduct = new Product(productArrayList.size(), productRequestDTO.getName(), productRequestDTO.getCategory(), productRequestDTO.getPrice());
-        productArrayList.add(newProduct);
-        return newProduct;
-    }
-
-    // recibe request DTO y devuelve response DTO
     public ProductResponseDTO createProductFromProductRequestDTO(ProductRequestDTO productRequestDTO) {
-//        if (productRequestDTO.getName() == null ||productRequestDTO.getName() == "" ){
-//            throw new BadRequestException("The name is mandatory");
-//        } ---> no lo tengo que hacer porque tengo validaciones
-
-        // traducción de DTO (cajita controlada contenedora de datos) a mi modelo Product
         Product newProduct = new Product(productArrayList.size(), productRequestDTO.getName(), productRequestDTO.getCategory(),
                 productRequestDTO.getPrice());
 
-        // lo guardo en memoria (mi arrayList)
         productArrayList.add(newProduct);
 
-        // traducción de product a mi DTO de respuesta
         ProductResponseDTO productResponseDTO = new ProductResponseDTO(newProduct.getId(), newProduct.getName(), newProduct.getCategory(),
                 newProduct.getPrice(), "Hi, this is a new product");
         return productResponseDTO;
     }
 
-    public ProductDTO createProductByProductDTO(ProductDTO productDTO) {
-        Product newProduct = new Product(productArrayList.size(), productDTO.getName(), productDTO.getCategory(), productDTO.getPrice());
+//    public void deleteProduct(Long id){
+//        productArrayList.removeIf(product -> product.getId().equals(id));
+//    }
 
-        System.out.println("The created product " + newProduct);
-        productArrayList.add(newProduct);
 
-        // si no hago nada interno con este product lo devuelvo tal cual
-        return productDTO;
+    public void deleteProduct(Long id) {
+        boolean hasRemovedProduct = false;
+        for (int i = 0; i < productArrayList.size(); i++) {
+            Product product = productArrayList.get(i);
+            if (product.getId().equals(id)) {
+                productArrayList.remove(i);
+                hasRemovedProduct = true;
+                break;
+            }
+        }
+
+        // si cuando ha terminado el bucle hasRemovedProduct sigue siendo falso es porque no existe un product con ese id
+        if (!hasRemovedProduct) throw new ProductNotFoundException(id);
+    }
+
+    // Actualización completa -- PUT
+    public Product updateProduct(Long id, ProductRequestDTO productRequestDTO) {
+        // Primero encuentro el producto que quiero actualizar
+        Product productFromArrayList = getProductById(id); // -> me devuelve el producto encontrado o null
+
+        if (productFromArrayList == null) {
+            return null;
+        }
+
+        productFromArrayList.setName(productRequestDTO.getName());
+        productFromArrayList.setCategory(productRequestDTO.getCategory());
+        productFromArrayList.setPrice(productRequestDTO.getPrice());
+
+
+        return productFromArrayList;
+    }
+
+    // Actualización parcial -- PATCH
+    public Product partialUpdateProduct(Long id, ProductUpdateRequestDTO productUpdateRequestDTO) {
+        // Primero encuentro el producto que quiero actualizar
+        Product productFromArrayList = getProductById(id);
+
+        if (productFromArrayList == null) return null;
+
+        if (productUpdateRequestDTO.getName() != null) {
+            productFromArrayList.setName(productUpdateRequestDTO.getName());
+        }
+
+        if (productUpdateRequestDTO.getCategory() != null) {
+            productFromArrayList.setCategory(productUpdateRequestDTO.getCategory());
+        }
+
+        if (productUpdateRequestDTO.getPrice() != null) {
+            productFromArrayList.setPrice(productUpdateRequestDTO.getPrice());
+        }
+
+        return productFromArrayList;
+
+    }
+
+    // Actualización parcial del Product -- actualizar el price
+    public Product updateProductPrice(Long id, ProductUpdatePriceRequestDTO dto) {
+        Product productFromArrayList = getProductById(id);
+
+        if (productFromArrayList == null) return null;
+
+        if (dto.getPrice() != null) productFromArrayList.setPrice(dto.getPrice());
+
+        return productFromArrayList;
     }
 }
